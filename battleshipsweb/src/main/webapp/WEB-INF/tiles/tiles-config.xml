@@ -1,0 +1,23 @@
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    
+    <definition name="helloPage" template="/WEB-INF/tiles/templates/mainPageTemplate.jsp">
+        
+        <put-attribute name="title" value="tytul"/>
+        <put-attribute name="upper" value="ziom"/>
+        <put-attribute name="left" value="co"/>
+        <put-attribute name="center" value="kurw"/>
+        
+    </definition>
+    
+    <definition name="simpleSquare" template="/WEB-INF/tiles/templates/simpleSquareTemplate.jsp">
+        
+        <put-attribute name="title" value="mega"/>
+        <put-attribute name="square" value="stuff"/>
+        
+    </definition>
+    
+</tiles-definitions>

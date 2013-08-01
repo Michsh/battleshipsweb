@@ -1,0 +1,39 @@
+
+#box {
+	
+	background-repeat: repeat;
+	background-size: auto;
+	background-image: url('./images/background.png');
+	-moz-box-sizing: border-box;
+	background-color: grey;
+	width: 1200px;
+	height: 900px;
+	padding: 20px 20px 20px 20px;
+	box-sizing: border-box;
+}
+
+#upper {
+	
+	width: 100%;
+	height: 20%;
+	background-color: red;
+	margin-bottom: 20px;
+}
+
+#left {
+	
+	float: left;
+	width: 20%;
+	height: 78%;
+	margin-right: 20px;
+	background-color: red;
+}
+
+#center {
+	
+	float: left;
+	width: 78%;
+	height: 78%;
+	background-color: red;
+	
+}
