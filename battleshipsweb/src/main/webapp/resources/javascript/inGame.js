@@ -1,0 +1,58 @@
+
+$("body").ready(function() {
+	
+	grid("player1grid", "leftBody");
+	grid("player2grid", "rightBody");
+});
+
+function grid(gridid, destination) {//player differentation stuff
+	
+	var cellSize = 60;
+	
+	var table = $(document.createElement("table"));
+	table.css("border-collapse", "collapse");
+	table.css("margin", "auto");
+	table.attr("id", gridid);
+	
+	for(var j=0; j<7; j++) {
+		
+		var row = $(document.createElement("tr"));
+		
+		for(var i=0; i<7; i++) {
+			
+			var cell = $(document.createElement("td"));
+			cell.attr("id", ("cell" + j) + i);
+			cell.css("width", cellSize + "px").css("height", cellSize + "px");
+			cell.css("text-align", "center");
+			if(i != 0 || j != 0) {
+				
+				cell.css("border", "1px solid black");
+			}
+			
+			if(j == 0) {
+				
+				cell.css("height", cellSize/2 + "px");
+				
+			}
+			if(i == 0) {
+				
+				cell.css("width", cellSize/2 + "px");
+				
+			}
+			
+			row.append(cell);
+		}
+		
+		table.append(row);
+	}
+	
+	$("#" + destination).append(table);
+	
+	var tab = ["A", "B", "C", "D", "E", "F"];
+	for(var i=1; i<7; i++) {
+		
+		$("#" + gridid + " #cell0" + i).html(tab[i-1]);
+		$("#" + gridid + " #cell" + i + "0").html(i);
+	}
+	
+}

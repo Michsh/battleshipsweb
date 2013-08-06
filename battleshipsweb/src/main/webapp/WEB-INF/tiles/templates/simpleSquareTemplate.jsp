@@ -5,14 +5,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Insert title here</title>
+        <title><tiles:getAsString name="title"/></title>
         <link rel="stylesheet" type="text/css" href="simpleSquareTemplate.css"/>
     </head>
     <body>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         
         <div id="box">
             
-            <div id="square">
+            <div id="square" style="<tiles:getAsString name="padding"/>">
                 
                 <tiles:insertAttribute name="square"/>
                 

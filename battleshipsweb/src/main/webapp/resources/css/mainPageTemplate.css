@@ -3,7 +3,10 @@
 	
 	background-repeat: repeat;
 	background-size: auto;
-	background-image: url('./images/background.png');
+	background-image: url('./images/background.jpg');
+	background-repeat: repeat;
+	background-size: auto;
+	background-image: url('./images/menu_background.jpg');
 	-moz-box-sizing: border-box;
 	background-color: grey;
 	width: 1200px;
@@ -14,26 +17,41 @@
 
 #upper {
 	
+	background-repeat: repeat;
+	background-size: auto;
+	background-image: url('./images/background.jpg');
+	-moz-box-sizing: border-box;
+	padding: 20px 20px 20px 20px;
+	border-radius: 20px;
 	width: 100%;
 	height: 20%;
-	background-color: red;
 	margin-bottom: 20px;
 }
 
 #left {
 	
+	background-repeat: repeat;
+	background-size: auto;
+	background-image: url('./images/background.jpg');
+	-moz-box-sizing: border-box;
+	padding: 20px 20px 20px 20px;
+	border-radius: 20px;
 	float: left;
 	width: 20%;
 	height: 78%;
 	margin-right: 20px;
-	background-color: red;
 }
 
 #center {
 	
+	background-repeat: repeat;
+	background-size: auto;
+	background-image: url('./images/background.jpg');
+	-moz-box-sizing: border-box;
+	padding: 20px 20px 20px 20px;
+	border-radius: 20px;
 	float: left;
 	width: 78%;
 	height: 78%;
-	background-color: red;
 	
 }

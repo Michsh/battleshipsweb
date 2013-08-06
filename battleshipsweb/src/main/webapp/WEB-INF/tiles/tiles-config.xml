@@ -6,17 +6,43 @@
     
     <definition name="helloPage" template="/WEB-INF/tiles/templates/mainPageTemplate.jsp">
         
-        <put-attribute name="title" value="tytul"/>
-        <put-attribute name="upper" value="ziom"/>
-        <put-attribute name="left" value="co"/>
-        <put-attribute name="center" value="kurw"/>
+        <put-attribute name="title" value="Battleships"/>
+        <put-attribute name="upper" value="/WEB-INF/tiles/parts/header.jsp"/>
+        <put-attribute name="left" value="/WEB-INF/tiles/parts/signInForm.jsp"/>
+        <put-attribute name="center" value="/WEB-INF/tiles/parts/ranking.jsp"/>
         
     </definition>
     
-    <definition name="simpleSquare" template="/WEB-INF/tiles/templates/simpleSquareTemplate.jsp">
+    <definition name="registration" template="/WEB-INF/tiles/templates/simpleSquareTemplate.jsp">
         
-        <put-attribute name="title" value="mega"/>
-        <put-attribute name="square" value="stuff"/>
+        <put-attribute name="title" value="Register yo ass!"/>
+        <put-attribute name="square" value="/WEB-INF/tiles/parts/registrationForm.jsp"/>
+        <put-attribute name="padding" value="padding: 200px 200px 200px 200px"/>
+        
+    </definition>
+    
+    <definition name="loggedIn" template="/WEB-INF/tiles/templates/mainPageTemplate.jsp">
+        
+        <put-attribute name="title" value="Battleships"/>
+        <put-attribute name="upper" value="/WEB-INF/tiles/parts/header.jsp"/>
+        <put-attribute name="left" value="/WEB-INF/tiles/parts/userControls.jsp"/>
+        <put-attribute name="center" value="/WEB-INF/tiles/parts/userStatistics.jsp"/>
+        
+    </definition>
+    
+    <definition name="inQueue" template="/WEB-INF/tiles/templates/simpleSquareTemplate.jsp">
+        
+        <put-attribute name="title" value="Queue"/>
+        <put-attribute name="square" value="/WEB-INF/tiles/parts/inQueue.jsp"/>
+        <put-attribute name="padding" value="padding: 300px 300px 300px 300px"/>
+        
+    </definition>
+    
+    <definition name="inGame" template="/WEB-INF/tiles/templates/simpleSquareTemplate.jsp">
+        
+        <put-attribute name="title" value="Battleships"/>
+        <put-attribute name="square" value="/WEB-INF/tiles/parts/inGame.jsp"/>
+        <put-attribute name="padding" value="padding: 25px 25px 25px 25px"/>
         
     </definition>
     
