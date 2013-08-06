@@ -1,11 +1,16 @@
 
 $("body").ready(function() {
 	
-	grid("player1grid", "leftBody");
-	grid("player2grid", "rightBody");
+	grid("player", "leftGrid");
+	grid("enemy", "rightGrid");
+	
+	makeMiss("A5", "player");
+	makeHit("B3", "player");
+	makeDestroyed("F6", "player");
+	setTimeout(function(){resetCell("F6", "player");}, 2000);
 });
 
-function grid(gridid, destination) {//player differentation stuff
+function grid(gridid, destination) {
 	
 	var cellSize = 60;
 	
@@ -56,3 +61,56 @@ function grid(gridid, destination) {//player differentation stuff
 	}
 	
 }
+
+function makeMiss(cell, gridid) {
+	
+	setCell(cell, gridid, "red");
+	
+}
+
+function makeHit(cell, gridid) {
+	
+	setCell(cell, gridid, "green");
+}
+
+function makeDestroyed(cell, gridid) {
+	
+	setCell(cell, gridid, "blue");
+}
+
+function resetCell(cell, gridid) {
+	
+	setCell(cell, gridid, "white");
+}
+
+function setCell(cell, gridid, color) {
+	
+	var x = cell.charAt(1);
+	var y = val(cell.charAt(0));
+	
+	$("#" + gridid + (" #cell" + x) + y).css("background-color", color);
+}
+
+function val(char) {
+	
+	switch(char) {
+	
+	case "A": return 1;
+	case "B": return 2;
+	case "C": return 3;
+	case "D": return 4;
+	case "E": return 5;
+	case "F": return 6;
+		
+	}
+	
+	return -1;
+}
+
+
+
+
+
+
+
+

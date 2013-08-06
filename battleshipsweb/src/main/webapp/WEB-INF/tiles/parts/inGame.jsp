@@ -83,10 +83,23 @@
         
         <div id="leftBody">
             
+            <div id="leftGrid">
+            
+            </div>
+            
+            <p>Misses: <span id="leftMissSpan">?</span></p>
+            <p>Hits: <span id="leftHitSpan">?</span></p>
+            
         </div>
         
         <div id="rightBody">
             
+            <div id="rightGrid">
+            
+            </div>
+            
+            <p>Misses: <span id="rightMissSpan">?</span></p>
+            <p>Hits: <span id="rightHitSpan">?</span></p>
             
         </div>
         
