@@ -18,12 +18,12 @@
         list-style-position: inside
     }
     
-    #rankingList li:nth-child(even) {
+    #rankingList .userDet:nth-child(even) {
         
         background-color: #FF4D4D;
     }
     
-    #rankingList li:nth-child(odd) {
+    #rankingList .userDet:nth-child(odd) {
         
         background-color: #33D6FF;
     }
@@ -36,8 +36,19 @@
     
     <ol id="rankingList" type="I">
         <c:forEach items="${ranking}" var="user">
-            
-            <li style="margin-left: 0px;"><span style="font-weight: bold">${user.username}</span>: ${user.score}</li>
+        
+            <div class="userDet">
+                <img src="./images/scout.png" style="float:left; width: 100px; height: 100px;"/>
+                <li style="margin-left: 0px;"><span style="font-weight: bold">${user.username}</span></li>
+                <ul>
+                    
+                    <li>Wins: ${user.wins}</li>
+                    <li>Losses: ${user.losses}</li>
+                    <li>Total hits: ${user.totalHits}</li>
+                    <li>Total misses: ${user.totalMisses}</li>
+                    
+                </ul>
+            </div>
             
         </c:forEach>
     </ol>

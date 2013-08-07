@@ -46,4 +46,12 @@
         
     </definition>
     
+    <definition name="logInForm" template="/WEB-INF/tiles/templates/simpleSquareTemplate.jsp">
+        
+        <put-attribute name="title" value="Battleships"/>
+        <put-attribute name="square" value="/WEB-INF/tiles/parts/signInForm.jsp"/>
+        <put-attribute name="padding" value="padding: 300px 450px 300px 450px"/>
+        
+    </definition>
+    
 </tiles-definitions>

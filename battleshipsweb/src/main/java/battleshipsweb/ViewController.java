@@ -1,18 +1,26 @@
 package battleshipsweb;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import battleshipsweb.components.BattleshipsDAO;
+
 @Controller
 public class ViewController {
+	
+	@Autowired
+	private BattleshipsDAO dao;
 	
 	@RequestMapping("/home")
 	public String showHome(Model model) {
@@ -35,26 +43,10 @@ public class ViewController {
 		return "redirect:/home";
 	}
 	
-	@RequestMapping(value="/user/home")
-	public String tmp(Model model) {
+	@RequestMapping("/login")
+	public String loginForm(Model model) {
 		
-		model.addAttribute("username", "dummyUsername");
-		
-		return "loggedIn";
-	}
-	
-	@RequestMapping(value="/user/queue")
-	public String tmp2(Model model) {
-		
-		model.addAttribute("playersInQueue", this.getNumberOfPlayersInQueue());
-		
-		return "inQueue";
-	}
-	
-	@RequestMapping(value="/user/match")
-	public String tmp3(Model model) {
-		
-		return "inGame";
+		return "logInForm";
 	}
 	
 	private int getNumberOfOnlinePlayers() {
@@ -62,9 +54,12 @@ public class ViewController {
 		return 0;
 	}
 	
-	private List<Dummy> getRanking() {
+	private List<UserDetails> getRanking() {
 		
-		return Arrays.asList(new Dummy("Ziomq", 123), new Dummy("UberCharger", 435), new Dummy("Killer", -12));
+		List<UserDetails> list = dao.getAllUsers();
+		Collections.sort(list);
+		
+		return list;
 	}
 	
 	private Integer getNumberOfPlayersInQueue() {

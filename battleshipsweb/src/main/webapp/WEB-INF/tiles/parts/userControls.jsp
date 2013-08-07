@@ -1,4 +1,6 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
     
     #userControls {
@@ -35,6 +37,8 @@
 
 <div id="userControls">
     
+    <script src="userControls.js"></script>
+    
     <p style="margin-bottom: 30px;">Hello, ${username}!</p>
     
     <div class="userButton">
@@ -45,7 +49,7 @@
         <p>Stats</p>
     </div>
     
-    <div class="userButton">
+    <div class="userButton" id="logout">
         <p>Logout</p>
     </div>
     

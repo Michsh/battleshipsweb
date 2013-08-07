@@ -8,6 +8,7 @@ $("body").ready(function() {
 	makeHit("B3", "player");
 	makeDestroyed("F6", "player");
 	setTimeout(function(){resetCell("F6", "player");}, 2000);
+
 });
 
 function grid(gridid, destination) {

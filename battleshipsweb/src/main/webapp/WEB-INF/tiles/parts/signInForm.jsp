@@ -1,4 +1,6 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
     #signInForm {
         
@@ -16,6 +18,13 @@
 </style>
 
 <div id="signInForm">
+    
+    <c:if test="${not empty param.login_error}">
+        <div class="errorblock">
+            LOGIN ERROR<br/>
+            Reason: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}<br/>
+        </div>
+    </c:if>
     
     <form method="POST" action="j_spring_security_check">
         
