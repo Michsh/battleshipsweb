@@ -7,6 +7,7 @@ public class UserDetails implements Comparable<UserDetails> {
 	private Integer losses;
 	private Integer totalHits;
 	private Integer totalMisses;
+	private Boolean hasImage;
 	
 	public String getUsername() {
 		
@@ -56,6 +57,16 @@ public class UserDetails implements Comparable<UserDetails> {
 	public void setTotalMisses(Integer totalMisses) {
 		
 		this.totalMisses = totalMisses;
+	}
+
+	public Boolean getHasImage() {
+		
+		return hasImage;
+	}
+
+	public void setHasImage(Boolean hasImage) {
+		
+		this.hasImage = hasImage;
 	}
 
 	public int compareTo(UserDetails o) {

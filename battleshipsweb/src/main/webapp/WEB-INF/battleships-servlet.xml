@@ -21,7 +21,6 @@
     <mvc:resources location="/resources/images/" mapping="/images/**"/>
     <mvc:resources location="/resources/images/" mapping="/user/images/**"/>
     <context:component-scan base-package="battleshipsweb"/>
-    <context:component-scan base-package="battleshipsweb.components"/>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         
@@ -29,6 +28,12 @@
         <property name="url" value="jdbc:mysql://localhost:3306"/>
         <property name="username" value="root"/>
         <property name="password" value="lollol20"/>
+        
+    </bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        
+        <property name="maxUploadSize" value="500000"/>
         
     </bean>
     
@@ -49,33 +54,6 @@
         </property>
         
     </bean>
-    
-    <security:authentication-manager>
-        
-        <security:authentication-provider>
-            
-            <security:jdbc-user-service data-source-ref="dataSource"
-            
-            users-by-username-query="select username, hash, enabled from battleships.user
-                                     where username = ? "
-                                     
-            authorities-by-username-query="select u.username, r.value from battleships.user u
-                                           join battleships.role r on u.user_id = r.usr_id
-                                           where u.username = ? "/>
-            
-        </security:authentication-provider>
-        
-    </security:authentication-manager>
-    
-    <security:http auto-config="true">
-        
-        <security:form-login default-target-url="/user/home" login-page="/login" authentication-failure-url="/login.htm?login_error=1"/>
-        
-        <security:logout logout-url="/user/logout" logout-success-url="/home"/>
-        
-        <security:intercept-url pattern="/user/**" access="ROLE_TROLL"/>
-        
-    </security:http>
     
 </beans>
 

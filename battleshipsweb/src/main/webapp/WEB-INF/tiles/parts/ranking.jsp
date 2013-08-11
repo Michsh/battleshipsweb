@@ -38,7 +38,12 @@
         <c:forEach items="${ranking}" var="user">
         
             <div class="userDet">
-                <img src="./images/scout.png" style="float:left; width: 100px; height: 100px;"/>
+                <c:if test="${user.hasImage}">
+                    <img src="./images/${user.username}.image" style="float:left; width: 100px; height: 100px;"/>
+                </c:if>
+                <c:if test="${!user.hasImage}">
+                    <img src="./images/scout.png" style="float:left; width: 100px; height: 100px;"/>
+                </c:if>
                 <li style="margin-left: 0px;"><span style="font-weight: bold">${user.username}</span></li>
                 <ul>
                     
