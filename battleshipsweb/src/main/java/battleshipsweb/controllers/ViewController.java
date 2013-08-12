@@ -1,4 +1,4 @@
-package battleshipsweb;
+package battleshipsweb.controllers;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import battleshipsweb.components.BattleshipsDAO;
 import battleshipsweb.components.FileManager;
 import battleshipsweb.components.SessionListener;
+import battleshipsweb.exceptions.CannotSaveMultipartException;
 import battleshipsweb.exceptions.FileExistsException;
 import battleshipsweb.exceptions.FileIsNotAnImageException;
+import battleshipsweb.UserDetails;
 
 @Controller
 @SessionAttributes({"REGISTRATION_ERROR"})
@@ -35,6 +37,9 @@ public class ViewController {
 	
 	@Autowired
 	private SessionListener sessions;
+	
+	@Autowired
+	private FileManager man;
 	
 	@RequestMapping("/home")
 	public String showHome(Model model) {
@@ -71,27 +76,13 @@ public class ViewController {
 			
 			avatar = true;
 			
-			String[] tmp = image.getOriginalFilename().split("\\.");
-			
-			filename = username + "." + tmp[tmp.length - 1];
-			
-			FileManager man = new FileManager();
-			man.setRootPath(ctx.getInitParameter("userFilesRootPath"));
-			
 			try {
 				
-				man.saveFile(image, filename);
-				
+				man.saveMultipartFile(image, username);
 			}
-			catch(FileIsNotAnImageException e) {
+			catch(CannotSaveMultipartException e) {
 				
-				System.out.println("FileIsNotAnImageException");
-				
-			}
-			catch(FileExistsException e) {
-				
-				System.out.println("FileExistsException");
-				
+				System.out.println(e.getMessage());
 			}
 			
 		}

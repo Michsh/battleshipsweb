@@ -11,7 +11,64 @@ import battleshipsweb.exceptions.*;
 public class FileManager {
 	
 	private String rootPath = null;
-
+	
+	public boolean isImage(MultipartFile file) {
+		
+		return file.getContentType().startsWith("image");
+	}
+	
+	private File[] getDirectoryContent() {
+		
+		File directory = new File(rootPath);
+		
+		return directory.listFiles();
+	}
+	
+	private boolean fileExists(String filename) {
+		
+		File[] files = getDirectoryContent();
+		
+		for(File f : files) {
+			
+			if(f.getName().equals(filename)) {
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private String getMultipartFileExtension(MultipartFile file) {
+		
+		String[] tmp = file.getOriginalFilename().split("\\.");
+		
+		return "." + tmp[tmp.length - 1];
+	}
+	
+	public void saveMultipartFile(MultipartFile file, String filename) throws CannotSaveMultipartException {
+		
+		String extension = getMultipartFileExtension(file);
+		
+		if(fileExists(filename + extension)) {
+			
+			throw new CannotSaveMultipartException("File " + filename + extension + " exists");
+		}
+		
+		File newFile = new File(rootPath + filename + extension);
+		
+		try {
+			
+			newFile.createNewFile();
+			FileUtils.writeByteArrayToFile(newFile, file.getBytes());
+			
+		}
+		catch(IOException e) {
+			
+			throw new CannotSaveMultipartException(e);
+		}
+	}
+	
 	public String getRootPath() {
 		
 		return rootPath;
@@ -22,42 +79,5 @@ public class FileManager {
 		this.rootPath = rootPath;
 	}
 	
-	public void saveFile(MultipartFile file, String filename) throws FileIsNotAnImageException, FileExistsException {
-		
-		if(rootPath == null) {
-			
-			throw new RootPathNotSetException();
-		}
-		
-		if(!isImage(file)) {
-			
-			throw new FileIsNotAnImageException();
-		}
-		
-		File newFile = new File(rootPath + filename);
-		
-		if(newFile.exists()) {
-			
-			throw new FileExistsException();
-		}
-		
-		try {
-			
-			newFile.createNewFile();
-			
-			FileUtils.writeByteArrayToFile(newFile, file.getBytes());
-			
-		}
-		catch(IOException e) {
-			
-			System.out.println("IOException in Filemanager");
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	private boolean isImage(MultipartFile file) {
-		
-		return file.getContentType().startsWith("image");
-	}
-	
+	//TODO scheduled jobs
 }

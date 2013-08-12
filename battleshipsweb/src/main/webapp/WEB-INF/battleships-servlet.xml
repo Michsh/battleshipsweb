@@ -20,38 +20,11 @@
     <mvc:resources location="/resources/javascript/" mapping="/user/**/*.js"/>
     <mvc:resources location="/resources/images/" mapping="/images/**"/>
     <mvc:resources location="/resources/images/" mapping="/user/images/**"/>
-    <context:component-scan base-package="battleshipsweb"/>
-    
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306"/>
-        <property name="username" value="root"/>
-        <property name="password" value="lollol20"/>
-        
-    </bean>
+    <context:component-scan base-package="battleshipsweb.controllers"/>
     
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         
         <property name="maxUploadSize" value="500000"/>
-        
-    </bean>
-    
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        
-        <constructor-arg name="dataSource" ref="dataSource"/>
-        
-    </bean>
-    
-    <bean class="org.springframework.web.servlet.view.tiles2.TilesViewResolver"/>
-    
-    <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-        
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles/tiles-config.xml</value>
-            </list>
-        </property>
         
     </bean>
     

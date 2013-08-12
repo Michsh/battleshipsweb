@@ -6,17 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 
 import battleshipsweb.UserDetails;
 
-@Component
 public class BattleshipsDAO {
 	
-	@Autowired
 	private JdbcTemplate template;
 	
 	private RowMapper<UserDetails> udRowMapper = new RowMapper<UserDetails>() {
@@ -36,7 +32,7 @@ public class BattleshipsDAO {
 		}
 	};
 	
-public void setTemplate(JdbcTemplate template) {
+	public void setTemplate(JdbcTemplate template) {
 		
 		this.template = template;
 	}
@@ -49,6 +45,7 @@ public void setTemplate(JdbcTemplate template) {
 	public void addNewUser(String username, String password, boolean image) {
 		
 		MessageDigest dig = null;
+		
 		try {
 			
 			dig = MessageDigest.getInstance("SHA-256");
@@ -85,5 +82,11 @@ public void setTemplate(JdbcTemplate template) {
 		
 		return template.queryForObject("SELECT username, wins, losses, total_hits, total_misses, image FROM battleships.user"
 									 + " WHERE username = ?", new Object[]{ username }, udRowMapper);
+	}
+	
+	public void setNoImage(String username) {
+		
+		template.update("UPDATE battleships.user SET image = false "
+					  + "WHERE username = ?", username);
 	}
 }

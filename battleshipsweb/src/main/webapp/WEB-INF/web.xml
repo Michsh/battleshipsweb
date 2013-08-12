@@ -4,72 +4,87 @@
 	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	      version="2.5">
 
-    <display-name>Archetype Created Web Application</display-name>
+    <display-name>Battleshipsweb</display-name>
     
-    <session-config>
+    <!-- FileServlet stuff -->
+    
+        <servlet>
+            <servlet-name>fileServlet</servlet-name>
+            <servlet-class>battleshipsweb.servlets.FileServlet</servlet-class>
+            
+            <init-param>
+                <param-name>userFilesRootPath</param-name>
+                <param-value>D:/Battleships/users_images/</param-value>
+            </init-param>
+            
+        </servlet>
         
-        <session-timeout>30</session-timeout>
+        <servlet-mapping>
+            <servlet-name>fileServlet</servlet-name>
+            <url-pattern>*.image</url-pattern>
+        </servlet-mapping>
         
-    </session-config>
+    <!--  -->
+    <!-- Spring servlet stuff -->
     
-    <servlet>
-        <servlet-name>battleships</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
+        <servlet>
+            <servlet-name>battleships</servlet-name>
+            <servlet-class>
+                org.springframework.web.servlet.DispatcherServlet
+            </servlet-class>
+            
+            <load-on-startup>1</load-on-startup>
+        </servlet>
+      
+        <servlet-mapping>
+            <servlet-name>battleships</servlet-name>
+            <url-pattern>/</url-pattern>
+        </servlet-mapping>
         
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+    <!--  -->
+    <!-- Spring security stuff -->
     
-    <servlet>
-        <servlet-name>fileServlet</servlet-name>
-        <servlet-class>battleshipsweb.servlets.FileServlet</servlet-class>
-    </servlet>
+        <filter>
+            <filter-name>springSecurityFilterChain</filter-name>
+            <filter-class>
+                      org.springframework.web.filter.DelegatingFilterProxy
+            </filter-class>
+        </filter>
+        
+        <filter-mapping>
+            <filter-name>springSecurityFilterChain</filter-name>
+            <url-pattern>/*</url-pattern>
+        </filter-mapping>
+        
+        <listener>
+            <listener-class>
+                org.springframework.security.web.session.HttpSessionEventPublisher
+            </listener-class>
+        </listener>
+        
+        <session-config>
+            <session-timeout>30</session-timeout>
+        </session-config>
+        
+    <!--  -->
     
-    <servlet-mapping>
-        <servlet-name>fileServlet</servlet-name>
-        <url-pattern>*.image</url-pattern>
-    </servlet-mapping>
-  
-    <context-param>
-        <param-name>userFilesRootPath</param-name>
-        <param-value>D:/Battleships/users_images/</param-value>
-    </context-param>
-  
-    <servlet-mapping>
-        <servlet-name>battleships</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    <!-- Spring context stuff -->
+        
+        <listener>
+            <listener-class>
+                org.springframework.web.context.ContextLoaderListener
+            </listener-class>
+        </listener>
     
-    <listener>
-        <listener-class>
-                  org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
-    
-    <listener>
-        <listener-class>
-            org.springframework.security.web.session.HttpSessionEventPublisher
-        </listener-class>
-    </listener>
-    
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            /WEB-INF/spring-security.xml
-        </param-value>
-    </context-param>
-    
-    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>
-                  org.springframework.web.filter.DelegatingFilterProxy
-        </filter-class>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+        <context-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                /WEB-INF/config/dataConfig.xml
+                /WEB-INF/config/viewConfig.xml
+                /WEB-INF/config/securityConfig.xml
+            </param-value>
+        </context-param>
+        
+    <!--  -->
     
 </web-app>
